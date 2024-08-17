@@ -1,3 +1,4 @@
+import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
@@ -12,6 +13,7 @@ export function ExternalLink(
 			{...props}
 			// @ts-expect-error: External URLs are not typed.
 			href={props.href}
+			style={{ color: Colors.both.linkColor }}
 			onPress={(e) => {
 				if (Platform.OS !== 'web') {
 					// Prevent the default behavior of linking to the default browser on native.

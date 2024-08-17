@@ -17,9 +17,11 @@ export default function HelpScreen() {
 				<ExternalLink href='https://developers.google.com/youtube/v3/getting-started'>
 					here
 				</ExternalLink>{' '}
-				for how to get one. It's highly recommended that you restrict your API
-				key which you can find out how to do{' '}
-				<ExternalLink href='https://developers.google.com/youtube/registering_an_application#:~:text=If%20the%20API%20key%20that,selecting%20one%20of%20the%20Restrictions.'>
+				for how to get started with API and how to get a key for it.{'\n\n'}It's
+				highly recommended that you restrict your API key once you generate one.
+				There are some brief instructions for restricting API keys which you can
+				find{' '}
+				<ExternalLink href='https://cloud.google.com/docs/authentication/api-keys#api_key_restrictions'>
 					here
 				</ExternalLink>
 				.
