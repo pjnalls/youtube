@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { Text, View } from '@/components/Themed';
 import { ExternalLink } from '@/components/ExternalLink';
 
@@ -33,8 +34,11 @@ export default function HelpScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'flex-start',
+		alignItems: 'center',
+		alignSelf: 'center',
 		justifyContent: 'center',
+		maxWidth: 720,
+		width: '100%',
 		padding: 16,
 	},
 	title: {

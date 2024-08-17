@@ -8,6 +8,9 @@ export default {
 		tint: tintColorLight,
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorLight,
+		textInputPlaceholderColor: '#888',
+		textInputBackground: '#eee',
+		textInputColor: '#111',
 	},
 	dark: {
 		text: '#fff',
@@ -15,8 +18,12 @@ export default {
 		tint: tintColorDark,
 		tabIconDefault: '#ccc',
 		tabIconSelected: tintColorDark,
+		textInputPlaceholderColor: '#999',
+		textInputBackground: '#333',
+		textInputColor: '#eee',
 	},
 	both: {
 		linkColor: '#f00',
+		textInputSelectionColor: '#f00',
 	},
 };
