@@ -7,7 +7,7 @@ import {
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from 'nativewind';
@@ -49,21 +49,31 @@ export default function RootLayout() {
 	return <RootLayoutNav />;
 }
 
+export const ApiKeyContext = createContext(
+	{} as {
+		apiKey: string;
+		setApiKey: React.Dispatch<React.SetStateAction<string>>;
+	},
+);
+
 function RootLayoutNav() {
 	const colorScheme = useColorScheme().colorScheme;
+	const [apiKey, setApiKey] = useState('');
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<Stack>
-				<Stack.Screen
-					name='(tabs)'
-					options={{ headerShown: false }}
-				/>
-				<Stack.Screen
-					name='modal'
-					options={{ presentation: 'modal' }}
-				/>
-			</Stack>
+			<ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+				<Stack>
+					<Stack.Screen
+						name='(tabs)'
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen
+						name='modal'
+						options={{ presentation: 'modal' }}
+					/>
+				</Stack>
+			</ApiKeyContext.Provider>
 		</ThemeProvider>
 	);
 }
