@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "ai-less-yt",
-		"slug": "ai-less-yt",
+		"name": "AI-less YouTube",
+		"slug": "ai-less-youtube",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
