@@ -11,6 +11,9 @@ export default {
 		textInputPlaceholderColor: '#888',
 		textInputBackground: '#eee',
 		textInputColor: '#111',
+		validColor: '#0c0',
+		validBackground: '#f0f0f0',
+		validBorderColor: '#ccc',
 	},
 	dark: {
 		text: '#fff',
@@ -21,6 +24,9 @@ export default {
 		textInputPlaceholderColor: '#999',
 		textInputBackground: '#333',
 		textInputColor: '#eee',
+		validColor: '#0f0',
+		validBackground: '#444',
+		validBorderColor: '#222',
 	},
 	both: {
 		linkColor: '#f00',
