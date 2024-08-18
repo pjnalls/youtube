@@ -25,15 +25,13 @@ export default function AccessScreen() {
 				`https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=1&key=${apiKey}`,
 			)
 				.then(response => {
-					console.log(response);
 					if (response.status.toString()[0].match(/[1345]/g)) {
 						setIsValidKey(false);
 					} else {
 						setIsValidKey(true);
 					}
 				})
-				.catch(error => {
-					console.log(error);
+				.catch(() => {
 					setIsValidKey(false);
 				});
 		}
@@ -51,7 +49,7 @@ export default function AccessScreen() {
 		} else if (isValidKey === null) {
 			return (
 				<MaterialIcons
-					name='mouse'
+					name='add-circle-outline'
 					color={Colors[colorScheme ?? 'light'].text}
 					size={24}
 				/>

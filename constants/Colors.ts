@@ -14,6 +14,7 @@ export default {
 		validColor: '#0c0',
 		validBackground: '#f0f0f0',
 		validBorderColor: '#ccc',
+		videoDetailsColor: '#333',
 	},
 	dark: {
 		text: '#fff',
@@ -27,6 +28,7 @@ export default {
 		validColor: '#0f0',
 		validBackground: '#444',
 		validBorderColor: '#222',
+		videoDetailsColor: '#ccc',
 	},
 	both: {
 		linkColor: '#f00',

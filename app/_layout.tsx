@@ -11,6 +11,8 @@ import { createContext, useEffect, useState } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from 'nativewind';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -49,12 +51,18 @@ export default function RootLayout() {
 	return <RootLayoutNav />;
 }
 
-export const ApiKeyContext = createContext(
-	{} as {
-		apiKey: string;
-		setApiKey: React.Dispatch<React.SetStateAction<string>>;
-	},
-);
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo('en-US');
+
+export const ApiKeyContext = createContext({
+	apiKey: '',
+	setApiKey: () => {},
+	timeAgo,
+} as {
+	apiKey: string;
+	setApiKey: React.Dispatch<React.SetStateAction<string>>;
+	timeAgo: TimeAgo;
+});
 
 function RootLayoutNav() {
 	const colorScheme = useColorScheme().colorScheme;
@@ -62,7 +70,7 @@ function RootLayoutNav() {
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<ApiKeyContext.Provider value={{ apiKey, setApiKey }}>
+			<ApiKeyContext.Provider value={{ apiKey, setApiKey, timeAgo }}>
 				<Stack>
 					<Stack.Screen
 						name='(tabs)'
