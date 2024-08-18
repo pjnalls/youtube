@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 		textAlign: 'left',
 	},
 	separator: {
-		marginVertical: 30,
+		marginVertical: 16,
 		height: 1,
 		width: '80%',
 	},

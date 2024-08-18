@@ -20,7 +20,7 @@ export default function VideoSnippet({
 
 	return (
 		<View style={styles.container}>
-			<View style={{ width: '30%' }}>
+			<View style={{ width: '34%' }}>
 				<Image
 					source={{ uri: url }}
 					style={{
@@ -29,7 +29,7 @@ export default function VideoSnippet({
 					}}
 				/>
 			</View>
-			<View style={{ width: '70%' }}>
+			<View style={{ width: '66%' }}>
 				<Text
 					style={[styles.title, { color: Colors[colorScheme ?? 'light'].text }]}
 				>

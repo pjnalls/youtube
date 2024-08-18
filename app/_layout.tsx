@@ -57,20 +57,31 @@ const timeAgo = new TimeAgo('en-US');
 export const ApiKeyContext = createContext({
 	apiKey: '',
 	setApiKey: () => {},
+	isValidKey: undefined,
+	setIsValidKey: () => {},
 	timeAgo,
 } as {
 	apiKey: string;
 	setApiKey: React.Dispatch<React.SetStateAction<string>>;
+	isValidKey: boolean | undefined | null;
+	setIsValidKey: React.Dispatch<
+		React.SetStateAction<boolean | undefined | null>
+	>;
 	timeAgo: TimeAgo;
 });
 
 function RootLayoutNav() {
 	const colorScheme = useColorScheme().colorScheme;
 	const [apiKey, setApiKey] = useState('');
+	const [isValidKey, setIsValidKey] = useState<boolean | undefined | null>(
+		undefined,
+	);
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<ApiKeyContext.Provider value={{ apiKey, setApiKey, timeAgo }}>
+			<ApiKeyContext.Provider
+				value={{ apiKey, setApiKey, isValidKey, setIsValidKey, timeAgo }}
+			>
 				<Stack>
 					<Stack.Screen
 						name='(tabs)'

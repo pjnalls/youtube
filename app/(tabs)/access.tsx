@@ -10,11 +10,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default function AccessScreen() {
 	const { colorScheme } = useColorScheme();
-	const [isValidKey, setIsValidKey] = useState<boolean | undefined | null>(
-		undefined,
-	);
-
-	const { apiKey, setApiKey } = useContext(ApiKeyContext);
+	const { apiKey, setApiKey, isValidKey, setIsValidKey } =
+		useContext(ApiKeyContext);
 	const handleChangeText = (key: string) => {
 		setApiKey(key);
 		setIsValidKey(null);
@@ -166,7 +163,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	separator: {
-		marginVertical: 30,
+		marginVertical: 16,
 		height: 1,
 		width: '80%',
 	},
