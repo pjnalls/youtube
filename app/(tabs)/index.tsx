@@ -120,7 +120,7 @@ export default function HomeScreen() {
 							<MaterialIcons
 								name='api'
 								color={Colors.both.linkColor}
-								size={24}
+								size={21}
 							/>
 						</Link>
 					)}
