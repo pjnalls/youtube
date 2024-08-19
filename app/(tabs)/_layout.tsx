@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Appearance, Platform, Pressable } from 'react-native';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from 'nativewind';
@@ -33,6 +33,11 @@ export default function TabLayout() {
 	const switchOpacity = useSharedValue(0);
 	const switchFadeIn = () => {
 		switchOpacity.value = withTiming(1, { duration: 300 });
+	};
+	const toggleTheme = () => {
+		Platform.OS === 'web'
+			? toggleColorScheme()
+			: Appearance.setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
 	};
 
 	useEffect(() => switchFadeIn(), []);
@@ -78,14 +83,14 @@ export default function TabLayout() {
 											name='info-circle'
 											size={25}
 											color={Colors[colorScheme ?? 'light'].text}
-											style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+											style={{ paddingRight: 15, opacity: pressed ? 0.5 : 1 }}
 										/>
 									)}
 								</Pressable>
 							</Link>
 							<Pressable
 								onPress={() => {
-									toggleColorScheme();
+									toggleTheme();
 									switchOpacity.value = 0;
 									switchFadeIn();
 								}}
@@ -97,7 +102,7 @@ export default function TabLayout() {
 											name={colorScheme === 'dark' ? 'sun-o' : 'moon-o'}
 											size={24}
 											color={Colors[colorScheme ?? 'light'].text}
-											style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+											style={{ paddingRight: 15, opacity: pressed ? 0.5 : 1 }}
 										/>
 									</Animated.View>
 								)}
