@@ -2,11 +2,11 @@ import { useColorScheme } from 'nativewind';
 import { useContext, useState } from 'react';
 import {
 	FlatList,
-	ScrollView,
 	StyleSheet,
 	TextInput,
 	TouchableOpacity,
 } from 'react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
@@ -14,7 +14,6 @@ import { ApiKeyContext } from '@/app/_layout';
 import VideoSnippet from '@/components/VideoSnippet';
 import { VideoDetails } from '@/types';
 import { MaterialIcons } from '@expo/vector-icons';
-import YoutubeEmbed from '@/components/YoutubeEmbed';
 import { Link } from '@react-navigation/native';
 
 export default function HomeScreen() {
@@ -38,13 +37,20 @@ export default function HomeScreen() {
 			.catch(error => console.error(error));
 	};
 	const handleThumbnailPress = (id: string) => {
-		setVideoId(id);
+		setVideoId('');
+		setTimeout(() => {
+			setVideoId(id);
+		}, 1000);
 	};
 
 	return (
 		<View style={styles.container}>
 			{videoId ? (
-				<YoutubeEmbed videoId={videoId} />
+				<YoutubePlayer
+					height={203}
+					videoId={videoId}
+					onChangeState={({}) => {}}
+				/>
 			) : (
 				<View
 					style={{
@@ -126,31 +132,32 @@ export default function HomeScreen() {
 					)}
 				</TouchableOpacity>
 			</View>
-			<ScrollView style={{ height: '60%', width: '100%' }}>
-				{videos ? (
-					<FlatList
-						style={{ height: '100%', width: '100%', overflow: 'scroll' }}
-						data={[...videos]}
-						keyExtractor={item => item.id.videoId.toString()}
-						renderItem={({ item }) => {
-							const time =
-								timeAgo.format(new Date(item.snippet.publishedAt)) ?? '';
-							return (
-								<TouchableOpacity
-									style={{ marginBottom: 4, marginTop: 4 }}
-									onPress={() => {
-										handleThumbnailPress(item.id.videoId);
-									}}
-								>
-									<VideoSnippet
-										videoDetails={item}
-										timeAgo={time}
-									/>
-								</TouchableOpacity>
-							);
-						}}
-					/>
-				) : (
+			{videos ? (
+				<FlatList
+					scrollEnabled={true}
+					style={{ height: '60%', width: '100%' }}
+					data={[...videos]}
+					keyExtractor={item => item.id.videoId.toString()}
+					renderItem={({ item }) => {
+						const time =
+							timeAgo.format(new Date(item.snippet.publishedAt)) ?? '';
+						return (
+							<TouchableOpacity
+								style={{ marginBottom: 4, marginTop: 4 }}
+								onPress={() => {
+									handleThumbnailPress(item.id.videoId);
+								}}
+							>
+								<VideoSnippet
+									videoDetails={item}
+									timeAgo={time}
+								/>
+							</TouchableOpacity>
+						);
+					}}
+				/>
+			) : (
+				<View style={{ height: '56%', width: '100%' }}>
 					<Text style={{ textAlign: 'center' }}>
 						{!!isValidKey ? (
 							'No results shown.'
@@ -175,8 +182,8 @@ export default function HomeScreen() {
 							</Text>
 						)}
 					</Text>
-				)}
-			</ScrollView>
+				</View>
+			)}
 		</View>
 	);
 }
