@@ -72,7 +72,7 @@ export default function AccessScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Gain access to the app here</Text>
+			<Text style={styles.title}>Enter API key below</Text>
 			<View
 				style={styles.separator}
 				lightColor='#eee'

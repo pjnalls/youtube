@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import { useContext, useState } from 'react';
 import {
@@ -49,7 +50,6 @@ export default function HomeScreen() {
 				<YoutubePlayer
 					height={203}
 					videoId={videoId}
-					onChangeState={({}) => {}}
 				/>
 			) : (
 				<View
@@ -73,7 +73,7 @@ export default function HomeScreen() {
 					placeholderTextColor={
 						!!isValidKey
 							? Colors[colorScheme ?? 'light'].textInputPlaceholderColor
-							: Colors.both.linkColor
+							: Colors[colorScheme ?? 'light'].textInputInvalidColor
 					}
 					selectionColor={Colors.both.textInputSelectionColor}
 					style={[
@@ -95,7 +95,11 @@ export default function HomeScreen() {
 				/>
 				<TouchableOpacity
 					onPress={() => {
-						if (!!isValidKey) handleButtonPress();
+						if (!!isValidKey) {
+							handleButtonPress();
+						} else {
+							router.navigate('/(tabs)/access');
+						}
 					}}
 					style={[
 						styles.searchButton,
@@ -108,9 +112,9 @@ export default function HomeScreen() {
 								}
 							: {
 									backgroundColor:
-										Colors[colorScheme ?? 'light'].textInputBackground,
+										Colors[colorScheme ?? 'light'].textInputInvalidBackground,
 									borderLeftColor:
-										Colors[colorScheme ?? 'light'].textInputPlaceholderColor,
+										Colors[colorScheme ?? 'light'].validBorderColor,
 								},
 						{ borderLeftWidth: 1 },
 					]}
@@ -122,13 +126,11 @@ export default function HomeScreen() {
 							size={24}
 						/>
 					) : (
-						<Link to={'/access'}>
-							<MaterialIcons
-								name='api'
-								color={Colors.both.linkColor}
-								size={21}
-							/>
-						</Link>
+						<MaterialIcons
+							name='api'
+							color={Colors.both.linkColor}
+							size={21}
+						/>
 					)}
 				</TouchableOpacity>
 			</View>
@@ -157,32 +159,30 @@ export default function HomeScreen() {
 					}}
 				/>
 			) : (
-				<View style={{ height: '56%', width: '100%' }}>
-					<Text style={{ textAlign: 'center' }}>
-						{!!isValidKey ? (
-							'No results shown.'
-						) : (
-							<Text>
-								Go to{' '}
-								<Link
-									to={'/access'}
-									style={{ color: Colors.both.linkColor }}
-								>
-									🔑 Access
-								</Link>{' '}
-								tab and enter YouTube Data API key.{'\n\n'}
-								Get help{' '}
-								<Link
-									to={'/help'}
-									style={{ color: Colors.both.linkColor }}
-								>
-									here
-								</Link>
-								.
-							</Text>
-						)}
-					</Text>
-				</View>
+				<Text style={{ textAlign: 'center' }}>
+					{!!isValidKey ? (
+						'No results shown.'
+					) : (
+						<Text>
+							Go to{' '}
+							<Link
+								to={'/access'}
+								style={{ color: Colors.both.linkColor }}
+							>
+								🔑 Access
+							</Link>{' '}
+							tab and enter YouTube Data API key.{'\n\n'}
+							Get help{' '}
+							<Link
+								to={'/help'}
+								style={{ color: Colors.both.linkColor }}
+							>
+								here
+							</Link>
+							.
+						</Text>
+					)}
+				</Text>
 			)}
 		</View>
 	);

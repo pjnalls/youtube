@@ -6,7 +6,7 @@ import { ExternalLink } from '@/components/ExternalLink';
 export default function HelpScreen() {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Getting access to this app</Text>
+			<Text style={styles.title}>Getting an API key</Text>
 			<View
 				style={styles.separator}
 				lightColor='#eee'

@@ -5,7 +5,7 @@ import {
 	ThemeProvider,
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { createContext, useEffect, useState } from 'react';
 import 'react-native-reanimated';
@@ -76,6 +76,14 @@ function RootLayoutNav() {
 	const [isValidKey, setIsValidKey] = useState<boolean | undefined | null>(
 		undefined,
 	);
+
+	useEffect(() => {
+		if (isValidKey) {
+			router.navigate('/(tabs)/');
+		} else {
+			router.navigate('/(tabs)/access');
+		}
+	}, [isValidKey]);
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
