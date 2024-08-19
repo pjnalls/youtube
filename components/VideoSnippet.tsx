@@ -4,7 +4,25 @@ import { Image, Platform, StyleSheet, Text } from 'react-native';
 import { View } from './Themed';
 
 import Colors from '@/constants/Colors';
-import { VideoDetails } from '@/types';
+
+type VideoDetails = {
+	id: {
+		videoId: string;
+	};
+	snippet: {
+		publishedAt: string;
+		title: string;
+		description: string;
+		thumbnails: {
+			high: {
+				url: string;
+				width: number;
+				height: number;
+			};
+		};
+		channelTitle: string;
+	};
+};
 
 export default function VideoSnippet({
 	videoDetails,

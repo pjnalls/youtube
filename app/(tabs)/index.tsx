@@ -7,7 +7,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 } from 'react-native';
-import YoutubePlayer from 'react-native-youtube-iframe';
+import YouTubePlayer from 'react-native-youtube-iframe';
 
 import { Text, View } from '@/components/Themed';
 import Colors from '@/constants/Colors';
@@ -47,7 +47,8 @@ export default function HomeScreen() {
 	return (
 		<View style={styles.container}>
 			{videoId ? (
-				<YoutubePlayer
+				<YouTubePlayer
+					width={360}
 					height={203}
 					videoId={videoId}
 				/>
