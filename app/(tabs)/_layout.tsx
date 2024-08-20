@@ -72,20 +72,6 @@ export default function TabLayout() {
             ),
           headerRight: () => (
             <View style={{ flexDirection: 'row' }}>
-              <Link
-                href='/modal'
-                asChild>
-                <Pressable>
-                  {({ pressed }) => (
-                    <FontAwesome
-                      name='info-circle'
-                      size={25}
-                      color={Colors[colorScheme ?? 'light'].text}
-                      style={{ paddingRight: 15, opacity: pressed ? 0.5 : 1 }}
-                    />
-                  )}
-                </Pressable>
-              </Link>
               <Pressable
                 onPress={() => {
                   toggleTheme();
@@ -124,6 +110,28 @@ export default function TabLayout() {
                 color={color}
               />
             ),
+          headerRight: () => (
+            <View style={{ flexDirection: 'row' }}>
+              <Pressable
+                onPress={() => {
+                  toggleTheme();
+                  switchOpacity.value = 0;
+                  switchFadeIn();
+                }}
+                style={{ width: 32 }}>
+                {({ pressed }) => (
+                  <Animated.View style={animatedStyle}>
+                    <FontAwesome
+                      name={colorScheme === 'dark' ? 'sun-o' : 'moon-o'}
+                      size={24}
+                      color={Colors[colorScheme ?? 'light'].text}
+                      style={{ paddingRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    />
+                  </Animated.View>
+                )}
+              </Pressable>
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
@@ -142,6 +150,28 @@ export default function TabLayout() {
                 color={color}
               />
             ),
+          headerRight: () => (
+            <View style={{ flexDirection: 'row' }}>
+              <Pressable
+                onPress={() => {
+                  toggleTheme();
+                  switchOpacity.value = 0;
+                  switchFadeIn();
+                }}
+                style={{ width: 32 }}>
+                {({ pressed }) => (
+                  <Animated.View style={animatedStyle}>
+                    <FontAwesome
+                      name={colorScheme === 'dark' ? 'sun-o' : 'moon-o'}
+                      size={24}
+                      color={Colors[colorScheme ?? 'light'].text}
+                      style={{ paddingRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    />
+                  </Animated.View>
+                )}
+              </Pressable>
+            </View>
+          ),
         }}
       />
     </Tabs>

@@ -16,7 +16,7 @@ export default function VideoSnippet({
   const { colorScheme } = useColorScheme();
 
   const { channelTitle, title, description, thumbnails } = videoDetails.snippet;
-  const { url, width, height } = thumbnails.high;
+  const { url, height } = thumbnails.high;
 
   return (
     <View style={styles.container}>
